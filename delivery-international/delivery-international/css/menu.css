@@ -1,0 +1,64 @@
+/* Switch/trueorfalse */
+.form-switch .form-check-input:checked + .form-check-label::before {
+    transform: translateX(22px);
+}
+.form-switch .form-check-input:checked + .form-check-label::after {
+    left: 27px;
+}
+.form-switch .form-check-label::before {
+    border-radius: 50%;
+}
+.form-switch .form-check-input:checked + .form-check-label {
+    color: yellow;
+}
+.checkeds {
+    color: orange;
+}
+/* pagination */
+.pagination-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-item a {
+    display: block;
+    padding: 4px 12px;
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.pagination .page-item a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination .page-item.active a {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pagination .page-link {
+    border: 1px solid #007bff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
