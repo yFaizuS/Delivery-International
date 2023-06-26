@@ -1,3 +1,37 @@
+const jquery = require('jquery');
+const {JSDOM} = require('jsdom');
+
+const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+global.window = dom.window;
+global.document = dom.window.document;
+const $ = jquery(dom.window);
+
+
+
+
+function ajaxRequest(url, method, data, successCallback, errorCallback, headers){
+  $.ajax({
+    url: url,
+    type: method,
+    data: data,
+    dataType: 'json',
+    headers: headers,
+    success: function(response){
+      successCallback(response);
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+      errorCallback(jqXHR, textStatus, errorThrown);
+    }
+  });
+}
+
+module.exports = ajaxRequest;
+
+
+
+
+
+
 $(document).ready(function () {
   // Fungsi untuk menampilkan data pada menu profile
   const getProfileAjax = () => {
@@ -62,6 +96,7 @@ $(document).ready(function () {
     );
   })
 })
+
 
 
 
