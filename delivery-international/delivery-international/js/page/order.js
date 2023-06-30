@@ -81,6 +81,8 @@ $(document).ready(function () {
         getDetailOrder(response)
       },
       function (jqXHR, textStatus, errorThrown) {
+        alert("Error encountered with API request")
+        window.location.href = "Error.html"
       },
       headers
     );
