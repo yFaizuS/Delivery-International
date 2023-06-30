@@ -1,7 +1,15 @@
 $(document).ready(function () {
   $('#form').submit(function (event) {
     event.preventDefault();
-    const data = {
+    const data = gatherFormData();
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    registerUser(data, headers);
+  });
+  
+  function gatherFormData() {
+    return {
       fullName: $('#fullName').val(),
       password: $('#password').val(),
       email: $('#email').val(),
@@ -9,11 +17,10 @@ $(document).ready(function () {
       birthDate: $('#date').val(),
       gender: $('#gender').val(),
       phoneNumber: $('#phoneNumber').val()
-    }
-    const headers = {
-      'Content-Type': 'application/json'
     };
-    // Fungsi untuk membuat data baru pada API register dan menggunakan endpoint POST
+  }
+  
+  function registerUser(data, headers) {
     ajaxRequest(
       'api/account/register',
       'POST',
@@ -26,6 +33,7 @@ $(document).ready(function () {
       },
       headers
     );
-  });
+  }
+  
 })
 
