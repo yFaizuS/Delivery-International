@@ -35,41 +35,48 @@ $(document).ready(function () {
   );
   // Fungsi untuk menampilkan semua data yang sudah di hit diatas dan diimplementasikan dalam HTML dibawah
   const getDish = (data) => {
-    $("#dishId").empty()
-    $.each(data, function (index, item) {
-      const html = `<div class="col-sm-3 text-center text-md-start">
-    <img src="${item.image}" width="100%" height="30%" alt="testing">
-    <div class="border">
-        <div class="px-2 py-2">
-            <p>${item.name}</p>
-            <P>Dish Category - ${item.category}</P>
-            <div class="rating text-center py-1 pb-1 d-flex justify-content-center">
-              <span class="fa fa-star ${item.rating >= 1 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 2 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 3 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 4 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 5 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 6 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 7 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 8 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 9 ? 'checkeds' : ''}"></span>
-              <span class="fa fa-star ${item.rating >= 10 ? 'checkeds' : ''}"></span>
-            </div>
-            <p>${item.description}</p>
-            <div class="row bg-light">
-                <div class="col-sm-6 text-center text-lg-start pt-1 pt-lg-3">
-                    <p>Price - ${item.price}</p>
+    const renderDish = (item) => {
+      return `<div class="col-sm-3 text-center text-md-start">
+        <img src="${item.image}" width="100%" height="30%" alt="testing">
+        <div class="border">
+            <div class="px-2 py-2">
+                <p>${item.name}</p>
+                <P>Dish Category - ${item.category}</P>
+                <div class="rating text-center py-1 pb-1 d-flex justify-content-center">
+                  ${renderRatingStars(item.rating)}
                 </div>
-                <div class="col-sm-6 text-center text-lg-end py-1 py-lg-2">
-                    <button class="btn btn-primary" id="buttonClick" data-item-id="${item.id}">Add to
-                        cart</button>
+                <p>${item.description}</p>
+                <div class="row bg-light">
+                    <div class="col-sm-6 text-center text-lg-start pt-1 pt-lg-3">
+                        <p>Price - ${item.price}</p>
+                    </div>
+                    <div class="col-sm-6 text-center text-lg-end py-1 py-lg-2">
+                        <button class="btn btn-primary" id="buttonClick" data-item-id="${item.id}">Add to
+                            cart</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>`
-      $("#dishId").append(html);
-    });
+        </div>`;
+    };
+    
+    const renderRatingStars = (rating) => {
+      let starsHtml = '';
+      for (let i = 1; i <= 10; i++) {
+        const checkedClass = rating >= i ? 'checkeds' : '';
+        starsHtml += `<span class="fa fa-star ${checkedClass}"></span>`;
+      }
+      return starsHtml;
+    };
+    
+    const getDish = (data) => {
+      $("#dishId").empty();
+      $.each(data, function (index, item) {
+        const html = renderDish(item);
+        $("#dishId").append(html);
+      });
+    };
+    
   }
   // Fungsi untuk membuat cart baru denan menggunakan api dish dan berdasarkan Id dengan method POST
   const createCart = (id) => {
