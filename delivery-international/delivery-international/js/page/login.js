@@ -78,7 +78,9 @@ $(document).ready(function () {
         console.log("Login Success");
       },
       function (jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR.responseJSON.message);
+        //console.log(jqXHR.responseJSON.message);
+      alert("Error encountered with API request")
+      window.location.href = "Error.html"
       },
       headers
     );
