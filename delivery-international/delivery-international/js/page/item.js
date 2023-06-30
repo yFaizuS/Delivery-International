@@ -73,7 +73,8 @@ $(document).ready(function () {
       $("#harga").text(`${response.price} p`)
     },
     function (jqXHR, textStatus, errorThrown) {
-      // window.location.href = "order.html"
+      alert("Error encountered with API request")
+      window.location.href = "order.html"
     },
     headers
   );
