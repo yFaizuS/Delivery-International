@@ -49,6 +49,8 @@ $(document).ready(function () {
       },
       function (jqXHR, textStatus, errorThrown) {
         // alert(jqXHR);
+        alert("Error encountered with API request")
+        window.location.href = "Error.html"
       },
       headers
     );
